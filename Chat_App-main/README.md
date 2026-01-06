@@ -1,189 +1,286 @@
-# Chat Application MERN-Stack Web Application.
+# 💬 Chat Application - MERN Stack
 
-<p align="center">
-  <b style="color: blue;  ">Visitor count</b>
-  <br>
-  <a style="" href="https://github.com/akashdeep023">
-  <img src="https://profile-counter.glitch.me/chat-app/count.svg" />
-  </a>
-</p>
+<div align="center">
+  <img src="https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react" alt="React">
+  <img src="https://img.shields.io/badge/Node.js-18.x-green?style=for-the-badge&logo=node.js" alt="Node.js">
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-green?style=for-the-badge&logo=mongodb" alt="MongoDB">
+  <img src="https://img.shields.io/badge/Socket.IO-4.7.5-black?style=for-the-badge&logo=socket.io" alt="Socket.IO">
+</div>
 
----
-
-<a style="" href="https://chat-application-jack.vercel.app/">
-  
-![Macbook-Air-Iphone-13](https://github.com/user-attachments/assets/24edbef0-083f-44d4-9717-3e659ecb404b)
-
-</a>
+<div align="center">
+  <h3>🚀 <a href="https://chat-app-main-black.vercel.app">Live Demo</a> | 🔗 <a href="https://chatapp-backend-0iwk.onrender.com">API</a></h3>
+</div>
 
 ---
 
-## Project Overview
+## 📋 Table of Contents
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Quick Start](#-quick-start)
+- [Environment Setup](#-environment-setup)
+- [Deployment](#-deployment)
+- [API Endpoints](#-api-endpoints)
+- [Contributing](#-contributing)
+- [Author](#-author)
 
-_A real-time **Chat application** built using the MERN stack (MongoDB, Express, React, Node.js) and styled with Tailwind CSS. It supports user authentication, group chats, and instant messaging with real-time updates via Socket.IO. The application is fully responsive and provides smooth communication with features like notifications and state management using Redux._
+## ✨ Features
 
-## Technologies & Packages Used
+### 🔐 **Authentication**
+- User registration and login
+- JWT-based authentication
+- Secure password hashing with bcrypt
+- Form validation
 
--   **MongoDB**: NoSQL database for flexible and scalable data storage.
--   **Express.js**: Web application framework for Node.js, providing robust features for web and mobile applications.
--   **Node.js**: JavaScript runtime for server-side development.
--   **React.js**: A JavaScript library for building reusable UI components and efficient single-page application views.
--   **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
--   **Socket.IO**: Enables real-time, bidirectional and event-based communication.
--   **JWT (JSON Web Tokens)**: Securely transmits information between parties as a JSON object.
--   **Redux**: A Predictable State Container for JavaScript Apps.
--   **React-Toastify**: A JavaScript library for providing toast notifications in React.
+### 💬 **Real-time Chat**
+- Instant messaging with Socket.IO
+- Group chat creation and management
+- Real-time typing indicators
+- Message notifications
 
-## Key Features
+### 👥 **User Management**
+- User search functionality
+- Profile management
+- Online/offline status
+- User avatars
 
--   **User Authentication:** SignIn, SignUp, and Logout functionality.
--   **Real-time Chat:** Users can send and receive messages in real-time.
--   **Group Chat:** Create and participate in group chats.
--   **Message Notifications:** Get notified of new messages with sound and visual alerts.
--   **State Management:** Manage application state efficiently using Redux.
--   **Responsive Design:** Tailwind CSS for a responsive and modern user interface.
-<!-- -   **User Status:** Display online/offline status of users. -->
+### 🎨 **Modern UI/UX**
+- Responsive design with Tailwind CSS
+- Professional gradient themes
+- Smooth animations and transitions
+- Mobile-friendly interface
 
-## How to Install
+### 🔧 **Additional Features**
+- Redux state management
+- Toast notifications
+- Error handling
+- Loading states
+- Auto-environment detection
 
-Follow these steps to set up and run the project locally:
+## 🛠 Tech Stack
 
-1.  **Clone the Repository:**
+### **Frontend**
+- **React.js** - UI library
+- **Redux Toolkit** - State management
+- **React Router** - Navigation
+- **Tailwind CSS** - Styling
+- **Socket.IO Client** - Real-time communication
+- **React Toastify** - Notifications
+- **React Icons** - Icon library
 
-    ```bash
-    git clone https://github.com/akashdeep023/Chat_App.git
-    cd Chat_App
-    ```
+### **Backend**
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **MongoDB** - Database
+- **Mongoose** - ODM
+- **Socket.IO** - Real-time communication
+- **JWT** - Authentication
+- **bcryptjs** - Password hashing
+- **CORS** - Cross-origin requests
 
-2.  **Install Dependencies:**
-    Frontend Folder :
+### **Deployment**
+- **Frontend**: Vercel
+- **Backend**: Render
+- **Database**: MongoDB Atlas
 
-    ```bash
-    cd frontend
-    npm install
-    ```
+## 🚀 Quick Start
 
-    Backend Folder :
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+- MongoDB Atlas account
+- Git
 
-    ```bash
-    cd backend
-    npm install
-    ```
+### 1. Clone Repository
+```bash
+git clone https://github.com/chauhanvikki/chat-app.git
+cd chat-app
+```
 
-3.  **Set Up Environment Variables:**
+### 2. Backend Setup
+```bash
+cd backend
+npm install
 
-    Configure the following environment variables by creating a .env file in the root of Forntend and Backend Folder:
+# Create .env file
+echo "MONGODB_URI=your_mongodb_connection_string" > .env
+echo "JWT_SECRET=your_jwt_secret_key" >> .env
+echo "FRONTEND_URL=http://localhost:5173" >> .env
+echo "PORT=3000" >> .env
+echo "NODE_ENV=development" >> .env
 
-    Frontend Folder :
+# Start backend server
+npm run dev
+```
 
-    ```bash
-    VITE_BACKEND_URL=http://localhost:9000
-    ```
+### 3. Frontend Setup
+```bash
+cd frontend
+npm install
 
-    Backend Folder :
+# Create .env file
+echo "VITE_BACKEND_URL=http://localhost:3000" > .env
+echo "VITE_NODE_ENV=development" >> .env
 
-    ```bash
-    FRONTEND_URL=http://localhost:5173
-    MONGODB_URI=mongodb://127.0.0.1:27017/chat-app
-    PORT=9000
-    JWT_SECRET=secret-kvndkvdlkajkhkJkBiu6JJNjkbhkvnskcmhLJ5dKbkjsamnv
-    ```
+# Start frontend server
+npm run dev
+```
 
-    Replace the values with your specific configurations.
+### 4. Access Application
+- **Frontend**: http://localhost:5173
+- **Backend**: http://localhost:3000
 
-4.  **Run the Application:**
+## ⚙️ Environment Setup
 
-    Frontend Folder :
+### Backend Environment Variables
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/chatapp
+JWT_SECRET=your_super_secret_jwt_key_here
+FRONTEND_URL=http://localhost:5173
+PORT=3000
+NODE_ENV=development
+```
 
-    ```bash
-    npm run dev
-    ```
+### Frontend Environment Variables
+```env
+VITE_BACKEND_URL=http://localhost:3000
+VITE_NODE_ENV=development
+```
 
-    Backend Folder :
+### 🔄 Auto Environment Switching
+The application automatically detects the environment:
+- **Local Development**: Uses localhost URLs
+- **Production**: Uses deployed URLs
 
-    ```bash
-    npm run dev
-    ```
+Use the environment switcher:
+```bash
+# Windows
+switch-env.bat
 
-5.  **Open in Your Browser:**
+# Choose: 1 for Local, 2 for Production
+```
 
-Open `http://localhost:5173` in your web browser.
+## 🚀 Deployment
 
-## Project Structure
+### Deploy to Vercel (Frontend)
+1. Push code to GitHub
+2. Connect repository to Vercel
+3. Set environment variables:
+   ```
+   VITE_BACKEND_URL=https://your-backend-url.onrender.com
+   ```
+4. Deploy
 
-    ├── frontend
-    │   ├── public
-    │   ├── src
-    │   │   ├── assets
-    │   │   ├── components
-    │   │   ├── pages
-    │   │   ├── redux
-    │   │   ├── socket
-    │   │   ├── utils
-    │   │   ├── App.jsx
-    │   │   ├── main.jsx
-    │   │   └── index.css
-    │   ├── index.html
-    │   ├── tailwind.config.js
-    │   ├── .env
-    │   └── package.json
-    ├── backend
-    │   ├── config
-    │   ├── controllers
-    │   ├── middlewares
-    │   ├── models
-    │   ├── routes
-    │   ├── server.js
-    │   ├── .env
-    │   └── package.json
-    └── README.md
+### Deploy to Render (Backend)
+1. Connect repository to Render
+2. Set build command: `npm install`
+3. Set start command: `npm start`
+4. Set environment variables:
+   ```
+   MONGODB_URI=your_mongodb_atlas_uri
+   JWT_SECRET=your_jwt_secret
+   FRONTEND_URL=https://your-frontend-url.vercel.app
+   NODE_ENV=production
+   ```
+5. Deploy
 
-## Author
+## 📡 API Endpoints
 
-Vishvendra Singh \
-Email: singhvikki870@gmail.com \
-Contact: 8708405362 \
-Location: Jhajjar, Haryana - 124103
+### Authentication
+```
+POST /api/auth/signup    - Register new user
+POST /api/auth/signin    - Login user
+```
 
-## Images
-**Profile**
-![Macbook-Air-localhost](https://github.com/user-attachments/assets/7ea906d8-10a9-4e79-a3aa-46f45dd328bb)
+### Users
+```
+GET  /api/user           - Get all users
+GET  /api/user/:id       - Get user by ID
+```
 
-**Group Create**
-![Macbook-Air-localhost (5)](https://github.com/user-attachments/assets/49cff226-f372-4668-8095-8f741265edc3)
+### Chats
+```
+GET  /api/chat           - Get user chats
+POST /api/chat           - Create new chat
+PUT  /api/chat/:id       - Update chat
+DELETE /api/chat/:id     - Delete chat
+```
 
-**Chat & Group Overview**
-![Macbook-Air-localhost (2)](https://github.com/user-attachments/assets/1c367efe-4059-432c-8e6c-86ccb41bf712)
+### Messages
+```
+GET  /api/message/:chatId - Get chat messages
+POST /api/message        - Send new message
+```
 
-**Chat & Group Members**
-![Macbook-Air-localhost (3)](https://github.com/user-attachments/assets/58764949-ac05-4c6b-ae6d-34c1d3232f64)
+## 📁 Project Structure
 
-**Chat & Group Setting**
-![Macbook-Air-localhost (4)](https://github.com/user-attachments/assets/33001244-8e21-46ff-b047-14bcac81829d)
+```
+chat-app/
+├── backend/
+│   ├── config/
+│   │   └── jwtProvider.js
+│   ├── controllers/
+│   │   ├── auth.js
+│   │   ├── chat.js
+│   │   ├── message.js
+│   │   └── user.js
+│   ├── middlewares/
+│   │   └── wrapAsync.js
+│   ├── models/
+│   │   ├── chat.js
+│   │   ├── message.js
+│   │   └── user.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── chat.js
+│   │   ├── message.js
+│   │   └── user.js
+│   ├── .env
+│   ├── package.json
+│   └── server.js
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── config/
+│   │   │   └── environment.js
+│   │   ├── pages/
+│   │   ├── redux/
+│   │   ├── utils/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── .env
+│   ├── package.json
+│   └── vite.config.js
+├── .gitignore
+├── DEPLOYMENT.md
+└── README.md
+```
 
-**Add User in Group (Admin Access)**
-![Macbook-Air-localhost (1)](https://github.com/user-attachments/assets/3dbf0fdb-4754-4d77-af5e-81fbf7a681d5)
+## 🤝 Contributing
 
-**Remove User in Group (Admin Access)**
-![Macbook-Air-localhost (6)](https://github.com/user-attachments/assets/526d6786-8813-4997-922c-bc3bfba2ee8b)
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
-**User Search & Chat**
-![Macbook-Air-localhost (7)](https://github.com/user-attachments/assets/b187e389-0fac-4c50-ba9c-aee1f9f55d66)
+## 📝 License
 
-**Notification Box**
-![Macbook-Air-localhost (8)](https://github.com/user-attachments/assets/376bdfd8-7ffa-435b-b506-0a7405d5137c)
+This project is licensed under the ISC License.
 
-**Notification Alert**
-![Screenshot 2024-07-22 231334](https://github.com/user-attachments/assets/fbaa92af-ee49-48b7-8442-cd8f8cc4d3bc)
+## 👨💻 Author
 
-**Shimmer**
-![image](https://github.com/user-attachments/assets/45b6665a-9e2d-4a61-b092-7cb7a0b775be)
-
-**Footer**
-![Screenshot 2024-07-22 154954](https://github.com/user-attachments/assets/82daa377-4285-45a3-af99-f0920344fa0b)
-
-## Thank You
-
-Thank you for exploring Chat App! Your feedback is valuable. If you have any suggestions or thoughts, feel free to share them with us. 😊
+**Vishvendra Singh**
+- 📧 Email: [singhvikki870@gmail.com](mailto:singhvikki870@gmail.com)
+- 📱 Contact: +91 8708405362
+- 📍 Location: Jhajjar, Haryana - 124103
+- 💼 LinkedIn: [vishvendra-singh](https://www.linkedin.com/in/vishvendra-singh-/)
+- 🐱 GitHub: [chauhanvikki](https://github.com/chauhanvikki)
+- 📷 Instagram: [chauhan_vikki__](https://www.instagram.com/chauhan_vikki__/)
 
 ---
+
+<div align="center">
+  <p>⭐ Star this repository if you found it helpful!</p>
+  <p>Made with ❤️ by Vishvendra Singh</p>
+</div>

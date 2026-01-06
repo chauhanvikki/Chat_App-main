@@ -140,9 +140,10 @@ Open `http://localhost:5173` in your web browser.
 
 ## Author
 
-Akash Deep \
-Email: contact.akashdeep023@gmail.com \
-LinkedIn : https://www.linkedin.com/in/akashdeep023/
+Vishvendra Singh \
+Email: singhvikki870@gmail.com \
+Contact: 8708405362 \
+Location: Jhajjar, Haryana - 124103
 
 ## Images
 **Profile**

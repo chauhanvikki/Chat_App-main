@@ -12,16 +12,17 @@ const Footer = () => {
 			<div className="flex items-center justify-start w-full p-4 flex-wrap">
 				<div className="flex flex-col min-w-[280px] w-[33%] my-3">
 					<h1 className="font-semibold mb-2">Contact</h1>
-					<span>Akash Deep</span>
-					<span>Patna, Bihar</span>
-					<span>Pincode - 801303</span>
+					<span>Vishvendra Singh</span>
+					<span>Jhajjar, Haryana</span>
+					<span>Pincode - 124103</span>
+					<span>Contact - 8708405362</span>
 					<span>
 						<Link
-							to={"mailto:contact.akashdeep023@gmail.com"}
+							to={"mailto:singhvikki870@gmail.com"}
 							target="_blank"
 							className="hover:text-blue-600 hover:underline"
 						>
-							contact.akashdeep023@gmail.com
+							singhvikki870@gmail.com
 						</Link>
 					</span>
 				</div>
@@ -65,7 +66,7 @@ const Footer = () => {
 					<span>
 						<a
 							className="hover:text-blue-600 hover:underline"
-							href="https://www.linkedin.com/in/akashdeep023/"
+							href="https://www.linkedin.com/in/vishvendra-singh-/"
 							target="_blank"
 							rel="noreferrer"
 						>
@@ -75,7 +76,7 @@ const Footer = () => {
 					<span>
 						<a
 							className="hover:text-blue-600 hover:underline"
-							href="https://github.com/akashdeep023/"
+							href="https://github.com/chauhanvikki"
 							target="_blank"
 							rel="noreferrer"
 						>
@@ -85,7 +86,7 @@ const Footer = () => {
 					<span>
 						<a
 							className="hover:text-blue-600 hover:underline"
-							href="https://instagram.com/akashdeep023_/"
+							href="https://www.instagram.com/chauhan_vikki__/"
 							target="_blank"
 							rel="noreferrer"
 						>
@@ -95,7 +96,7 @@ const Footer = () => {
 					<span>
 						<a
 							className="hover:text-blue-600 hover:underline"
-							href="mailto:contact.akashdeep023@gmail.com"
+							href="mailto:singhvikki870@gmail.com"
 							target="_blank"
 							rel="noreferrer"
 						>

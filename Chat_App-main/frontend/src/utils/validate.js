@@ -12,8 +12,8 @@ export const checkValidSignInFrom = (email, password) => {
 	return null;
 };
 export const checkValidSignUpFrom = (firstName, lastName, email, password) => {
-	const isFirstValid = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/.test(firstName);
-	const isLastValid = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/.test(lastName);
+	const isFirstValid = /^[a-zA-Z]{2,}$/.test(firstName);
+	const isLastValid = /^[a-zA-Z]{2,}$/.test(lastName);
 	const isEmailValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
 		email
 	);

@@ -5,6 +5,15 @@
 		<link rel="icon" type="image/png" href="/logo.jpeg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Chat Application</title>
+		<script>
+			// Error handling for production
+			window.addEventListener('error', function(e) {
+				console.error('Error:', e.error);
+			});
+			window.addEventListener('unhandledrejection', function(e) {
+				console.error('Unhandled promise rejection:', e.reason);
+			});
+		</script>
 	</head>
 
 	<body>

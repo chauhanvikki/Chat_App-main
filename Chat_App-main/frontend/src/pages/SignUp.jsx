@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { checkValidSignUpFrom } from "../utils/validate";
 import { PiEye, PiEyeClosedLight } from "react-icons/pi";
 import { FaUserPlus, FaEnvelope, FaLock, FaUser } from "react-icons/fa";
+import { BACKEND_URL } from "../config/environment";
 
 const SignUp = () => {
 	const [firstName, setFirstName] = useState("");
@@ -18,7 +19,7 @@ const SignUp = () => {
 		// Signup ---
 		toast.loading("Creating your account...");
 		e.target.disabled = true;
-		fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/signup`, {
+		fetch(`${BACKEND_URL}/api/auth/signup`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

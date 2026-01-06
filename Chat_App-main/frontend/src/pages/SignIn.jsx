@@ -6,6 +6,7 @@ import { addAuth } from "../redux/slices/authSlice";
 import { checkValidSignInFrom } from "../utils/validate";
 import { PiEye, PiEyeClosedLight } from "react-icons/pi";
 import { FaSignInAlt, FaEnvelope, FaLock } from "react-icons/fa";
+import { BACKEND_URL } from "../config/environment";
 
 const SignIn = () => {
 	const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ const SignIn = () => {
 		// SignIn ---
 		toast.loading("Signing you in...");
 		e.target.disabled = true;
-		fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/signin`, {
+		fetch(`${BACKEND_URL}/api/auth/signin`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

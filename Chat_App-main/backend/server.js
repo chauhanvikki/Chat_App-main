@@ -6,16 +6,47 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+// Auto-detect environment and set appropriate URLs
+const isProduction = process.env.NODE_ENV === 'production';
+const frontendUrls = [
+	process.env.FRONTEND_URL,
+	"http://localhost:5173",
+	"https://chat-app-main-black.vercel.app",
+	"http://localhost:3000"
+].filter(Boolean);
+
+// Enhanced CORS configuration for both environments
 const corsOptions = {
-	origin: process.env.FRONTEND_URL,
-	methods: ["GET", "POST", "DELETE"],
-	allowedHeaders: ["Content-Type", "Authorization"],
+	origin: function (origin, callback) {
+		// Allow requests with no origin (mobile apps, etc.)
+		if (!origin) return callback(null, true);
+		
+		if (frontendUrls.includes(origin)) {
+			callback(null, true);
+		} else {
+			console.log('CORS blocked origin:', origin);
+			callback(new Error('Not allowed by CORS'));
+		}
+	},
+	methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
+	allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
 	credentials: true,
+	optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Health check endpoint
+app.get("/health", (req, res) => {
+	res.status(200).json({ 
+		status: "OK", 
+		environment: isProduction ? 'production' : 'development',
+		timestamp: new Date().toISOString() 
+	});
+});
+
 const PORT = process.env.PORT || 3000;
 
 // All routers
@@ -24,20 +55,33 @@ const userRouter = require("./routes/user");
 const chatRouter = require("./routes/chat");
 const messageRouter = require("./routes/message");
 
-// Connect to Database
+// Connect to Database with better error handling
 main()
-	.then(() => console.log("Database Connection established"))
-	.catch((err) => console.log(err));
+	.then(() => console.log("✅ Database Connection established"))
+	.catch((err) => {
+		console.error("❌ Database connection failed:", err);
+		if (isProduction) process.exit(1);
+	});
 
 async function main() {
-	await mongoose.connect(process.env.MONGODB_URI);
+	try {
+		await mongoose.connect(process.env.MONGODB_URI, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+		});
+	} catch (error) {
+		console.error("MongoDB connection error:", error);
+		throw error;
+	}
 }
 
 // Root route
 app.get("/", (req, res) => {
 	res.json({
-		message: "Welcome to Chat Application!",
-		frontend_url: process.env.FRONTEND_URL,
+		message: "🚀 Chat Application Backend is running!",
+		environment: isProduction ? 'production' : 'development',
+		allowed_origins: frontendUrls,
+		timestamp: new Date().toISOString()
 	});
 });
 
@@ -47,28 +91,49 @@ app.use("/api/user", userRouter);
 app.use("/api/chat", chatRouter);
 app.use("/api/message", messageRouter);
 
-// Invaild routes
+// Invalid routes
 app.all("*", (req, res) => {
-	res.json({ error: "Invaild Route" });
+	res.status(404).json({ 
+		error: "Route not found", 
+		path: req.path,
+		method: req.method 
+	});
 });
 
-// Error handling middleware
+// Enhanced error handling middleware
 app.use((err, req, res, next) => {
-	const errorMessage = err.message || "Something Went Wrong!";
-	res.status(500).json({ message: errorMessage });
+	console.error("Error:", err);
+	const errorMessage = err.message || "Something went wrong!";
+	const statusCode = err.statusCode || 500;
+	res.status(statusCode).json({ 
+		message: errorMessage,
+		...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+	});
 });
 
 // Start the server
-const server = app.listen(PORT, async () => {
-	console.log(`Server listening on ${PORT}`);
+const server = app.listen(PORT, '0.0.0.0', () => {
+	console.log(`🚀 Server listening on port ${PORT}`);
+	console.log(`🌍 Environment: ${isProduction ? 'PRODUCTION' : 'DEVELOPMENT'}`);
+	console.log(`🔗 Allowed Origins:`, frontendUrls);
 });
 
-// Socket.IO setup
+// Graceful shutdown
+process.on('SIGTERM', () => {
+	console.log('SIGTERM received, shutting down gracefully');
+	server.close(() => {
+		console.log('Process terminated');
+	});
+});
+
+// Socket.IO setup with enhanced configuration
 const { Server } = require("socket.io");
 const io = new Server(server, {
 	pingTimeout: 60000,
-	transports: ["websocket"],
+	pingInterval: 25000,
+	transports: ["websocket", "polling"],
 	cors: corsOptions,
+	allowEIO3: true
 });
 
 // Socket connection
